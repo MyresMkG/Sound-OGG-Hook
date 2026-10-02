@@ -1,0 +1,9 @@
+[08:54:08      0.000] 
+[08:54:08      0.000] 
+[08:54:09      0.016] image: base 0x140000000, 7 sections, 134745 .pdata functions
+[08:54:09      0.110] resolve: anchor "Failed to load audio "%s". SDL Error: "%s"
+"
+[08:54:09      0.110] resolve:   string rva 0x25625f0, referenced from rva 0x1b0d8f9
+[08:54:09      0.110] resolve:   sound loader 0x1b0d680..0x1b0db99 (size 1305)
+[08:54:09      0.110] resolve:   SDL_LoadWAV_RW call at 0x1b0d87b -> stub 0x1d99dd0 -> slot 0x27f40a8
+[08:54:09      0.110] resolve:   slot holds 0x141d97fa0 (rva 0x1d97fa0) (image code: SDL is initialised)

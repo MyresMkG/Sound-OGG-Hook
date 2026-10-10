@@ -1,9 +1,8 @@
 // The SDL_RWops the game hands to SDL_LoadWAV_RW, and a memory-backed one we
 // hand back to the real loader.
 //
-// The struct layout changed once in SDL's life (2.0.20 inserted a `size` member
-// at the front), so instead of assuming one, we recognise which layout the live
-// RWops uses from its callback pointers plus its type tag. That check also
+// HOI4 uses the layout with a `size` callback at the front. We recognise the live
+// RWops from its callback pointers plus its type tag. That check also
 // doubles as a guard - if the layout is ever different again, we simply do not
 // touch the stream and the call falls through to SDL unchanged.
 #pragma once

@@ -80,7 +80,7 @@ size_t MatchBrace(const std::string& text, size_t open, size_t end) {
 }
 
 void ScanLevel(const std::string& text, size_t begin, size_t end, int depth,
-               std::vector<std::string>* out) {
+               std::vector<std::string>* out, const char* key) {
   size_t i = begin;
   while (i < end) {
     if (!IsNameStart(text[i])) {
@@ -104,13 +104,13 @@ void ScanLevel(const std::string& text, size_t begin, size_t end, int depth,
       const size_t close = MatchBrace(text, cursor, end);
       if (close == std::string::npos) return;  // malformed: nothing more to read
       if (depth < kMaxDepth && !NameEquals(text, i, name_end, "music")) {
-        ScanLevel(text, cursor + 1, close, depth + 1, out);
+        ScanLevel(text, cursor + 1, close, depth + 1, out, key);
       }
       i = close + 1;
       continue;
     }
 
-    if (NameEquals(text, i, name_end, "file") && text[cursor] == '"') {
+    if (NameEquals(text, i, name_end, key) && text[cursor] == '"') {
       const size_t start = cursor + 1;
       size_t stop = start;
       while (stop < end && text[stop] != '"') ++stop;
@@ -135,7 +135,14 @@ std::wstring JoinPath(const std::wstring& dir, const wchar_t* leaf) {
 std::vector<std::string> AssetFileEntries(const std::string& text) {
   std::vector<std::string> out;
   const std::string clean = StripComments(text);
-  ScanLevel(clean, 0, clean.size(), 0, &out);
+  ScanLevel(clean, 0, clean.size(), 0, &out, "file");
+  return out;
+}
+
+std::vector<std::string> ModDescriptorPaths(const std::string& text) {
+  std::vector<std::string> out;
+  const std::string clean = StripComments(text);
+  ScanLevel(clean, 0, clean.size(), 0, &out, "path");
   return out;
 }
 

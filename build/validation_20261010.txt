@@ -1,0 +1,263 @@
+[1/5] stb_vorbis.c
+[2/5] sound_ogg_hook.dll
+[3/5] verify_resolver.exe
+[4/5] selftest.exe
+[5/5] selftest run
+sound_ogg_hook selftest
+config          : shipped ini parses to -> cache 256 MB, threads 0, prefetch on, max file 24 MB, roots 1, verbose 1, force_scan 0
+decode          : D:\SteamLibrary\steamapps\common\Hearts of Iron IV\music\sovietvictory.ogg
+                  44100 Hz, 2 ch, 2712150 frames (61.50 s), 10.3 MB PCM
+                  94.5 ms wall, 651.1x realtime, 109.5 MB/s of PCM
+all checks passed
+
+done:
+README.md
+sound_ogg_hook.dll
+sound_ogg_hook.ini
+integration_host.exe
+selftest.exe
+sound_ogg_hook.log
+stb_vorbis.o
+validation_20261010.txt
+verify_resolver.exe
+GAME D:\zStudy\hoi4\hoi4_1.19.3.exe MD5 2c13d60db727e59dd21b4f27654c4a66
+file            : D:\zStudy\hoi4\hoi4_1.19.3.exe
+resolved by     : Failed to load audio "%s". SDL Error: "%s"
+
+sound loader    : 0x23c1680..0x23c1bdf (size 1375)
+load call       : 0x23c1787
+stub            : 0x20bd830
+slot            : 0x30b6988 (holds 0x1420b5f30)
+slot holds      : bootstrap trampoline 0x20b5f30
+installed impl  : 0x20d2140 (from the dynapi installer)
+impl is WAV     : yes (RIFF/WAVE ids)
+OK
+method          : byte-pattern scan only (--scan)
+file            : D:\zStudy\hoi4\hoi4_1.19.3.exe
+resolved by     : (byte-pattern scan)
+sound loader    : 0x23c1680..0x23c1bdf (size 1375)
+load call       : 0x23c1787
+stub            : 0x20bd830
+slot            : 0x30b6988 (holds 0x1420b5f30)
+slot holds      : bootstrap trampoline 0x20b5f30
+installed impl  : 0x20d2140 (from the dynapi installer)
+impl is WAV     : yes (RIFF/WAVE ids)
+OK
+INSTALLED GAME MD5 b193cb363b5024144bcf278571801fa6
+file            : D:\SteamLibrary\steamapps\common\Hearts of Iron IV\hoi4.exe
+resolved by     : Failed to load audio "%s". SDL Error: "%s"
+
+sound loader    : 0x23c1680..0x23c1bdf (size 1375)
+load call       : 0x23c1787
+stub            : 0x20bd830
+slot            : 0x30b6988 (holds 0x1420b5f30)
+slot holds      : bootstrap trampoline 0x20b5f30
+installed impl  : 0x20d2140 (from the dynapi installer)
+impl is WAV     : yes (RIFF/WAVE ids)
+OK
+method          : byte-pattern scan only (--scan)
+file            : D:\SteamLibrary\steamapps\common\Hearts of Iron IV\hoi4.exe
+resolved by     : (byte-pattern scan)
+sound loader    : 0x23c1680..0x23c1bdf (size 1375)
+load call       : 0x23c1787
+stub            : 0x20bd830
+slot            : 0x30b6988 (holds 0x1420b5f30)
+slot holds      : bootstrap trampoline 0x20b5f30
+installed impl  : 0x20d2140 (from the dynapi installer)
+impl is WAV     : yes (RIFF/WAVE ids)
+OK
+sound_ogg_hook selftest
+config          : shipped ini parses to -> cache 256 MB, threads 0, prefetch on, max file 24 MB, roots 1, verbose 1, force_scan 0
+decode          : D:\SteamLibrary\steamapps\common\Hearts of Iron IV\music\sovietvictory.ogg
+                  44100 Hz, 2 ch, 2712150 frames (61.50 s), 10.3 MB PCM
+                  94.1 ms wall, 653.2x realtime, 109.9 MB/s of PCM
+all checks passed
+file            : D:\zStudy\hoi4\source_code\sound_ogg_hook_src\build\integration_host.exe
+resolved by     : Failed to load audio "%s". SDL Error: "%s"
+
+sound loader    : 0x26f0..0x2816 (size 294)
+load call       : 0x26fe
+stub            : 0x2820
+slot            : 0xcc000 (holds 0x140002830)
+slot holds      : bootstrap trampoline 0x2830
+installed impl  : 0x1730 (from the dynapi installer)
+impl is WAV     : yes (RIFF/WAVE ids)
+OK
+method          : byte-pattern scan only (--scan)
+file            : D:\zStudy\hoi4\source_code\sound_ogg_hook_src\build\integration_host.exe
+resolved by     : (byte-pattern scan)
+sound loader    : 0x26f0..0x2816 (size 294)
+load call       : 0x26fe
+stub            : 0x2820
+slot            : 0xcc000 (holds 0x140002830)
+slot holds      : bootstrap trampoline 0x2830
+installed impl  : 0x1730 (from the dynapi installer)
+impl is WAV     : yes (RIFF/WAVE ids)
+OK
+CASE sync
+ASLR preferred=0x140000000 actual=0x7ff742420000 relocated=1
+hooked=1 live-base-ok=1 WAV/Ogg/invalid/freesrc/PCM=OK
+[09:19:25      0.000] sound_ogg_hook: process start, module dir = D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\sync\injected_mods\sound_ogg_hook
+[09:19:25      0.000] log file: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\sync\injected_mods\sound_ogg_hook\sound_ogg_hook.log
+[09:19:25      0.000] config: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\sync\injected_mods\sound_ogg_hook\sound_ogg_hook.ini loaded (1 keys): cache 256 MB, threads 0, prefetch off, max file 24 MB, roots 1, verbose 1, force_scan 0
+[09:19:25      0.000] image: base 0x140000000, 18 sections, 3912 .pdata functions
+[09:19:25      0.015] resolve: anchor "Failed to load audio "%s". SDL Error: "%s"
+"
+[09:19:25      0.015] resolve:   string rva 0xcf120, referenced from rva 0x2706
+[09:19:25      0.015] resolve:   sound loader 0x26f0..0x2816 (size 294)
+[09:19:25      0.015] resolve:   SDL_LoadWAV_RW call at 0x26fe -> stub 0x2820 -> slot 0xcc000
+[09:19:25      0.015] resolve:   slot holds 0x7ff742422830 (rva 0x2830) (image code: SDL is initialised)
+[09:19:25      0.015] init: slot holds SDL's bootstrap trampoline 0x2830; the dynapi installer will write 0x1730 into it
+[09:19:25      0.015] init: implementation 0x1730 is SDL's WAV parser (RIFF/WAVE ids)
+[09:19:25      0.015] patch: hooked rva 0x2820 -> 00007FFA7E2520A0 (absolute jump, slot left alone)
+[09:19:25      0.015] init: hook live on rva 0x2820 (call site 0x26fe, slot 0xcc000)
+[09:19:25      0.015] prefetch: disabled by configuration
+[09:19:25      0.015] sound_ogg_hook: initialisation complete (probe mode installs no hook)
+[09:19:28      3.390] hook: SDL_RWops layout: size@0x0 seek@0x8 read@0x10 close@0x20 hidden@0x30
+[09:19:28      3.390] load: pass-through for a non-Ogg stream (first bytes 52 49 46 46), SDL handles it as before
+[09:19:28      3.390] load: pass-through for a non-Ogg stream (first bytes 52 49 46 46), SDL handles it as before
+[09:19:28      3.484] load: decoded on demand, 44100 Hz 2 ch 61.50 s in 94.3 ms (prefetcher missed)
+[09:19:28      3.593] load: decoded on demand, 44100 Hz 2 ch 61.50 s in 94.7 ms (prefetcher missed)
+[09:19:28      3.593] load: ogg decode failed (stb_vorbis_open_memory failed (error 34)); letting SDL report the failure
+CASE prefetch
+ASLR preferred=0x140000000 actual=0x7ff669860000 relocated=1
+hooked=1 live-base-ok=1 WAV/Ogg/invalid/freesrc/PCM=OK
+[09:19:29      0.000] sound_ogg_hook: process start, module dir = D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\prefetch\injected_mods\sound_ogg_hook
+[09:19:29      0.000] log file: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\prefetch\injected_mods\sound_ogg_hook\sound_ogg_hook.log
+[09:19:29      0.000] config: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\prefetch\injected_mods\sound_ogg_hook\sound_ogg_hook.ini loaded (2 keys): cache 256 MB, threads 1, prefetch on, max file 24 MB, roots 0, verbose 1, force_scan 0
+[09:19:29      0.000] image: base 0x140000000, 18 sections, 3912 .pdata functions
+[09:19:29      0.015] resolve: anchor "Failed to load audio "%s". SDL Error: "%s"
+"
+[09:19:29      0.015] resolve:   string rva 0xcf120, referenced from rva 0x2706
+[09:19:29      0.015] resolve:   sound loader 0x26f0..0x2816 (size 294)
+[09:19:29      0.015] resolve:   SDL_LoadWAV_RW call at 0x26fe -> stub 0x2820 -> slot 0xcc000
+[09:19:29      0.015] resolve:   slot holds 0x7ff669862830 (rva 0x2830) (image code: SDL is initialised)
+[09:19:29      0.015] init: slot holds SDL's bootstrap trampoline 0x2830; the dynapi installer will write 0x1730 into it
+[09:19:29      0.015] init: implementation 0x1730 is SDL's WAV parser (RIFF/WAVE ids)
+[09:19:29      0.015] patch: hooked rva 0x2820 -> 00007FFA7E2520A0 (absolute jump, slot left alone)
+[09:19:29      0.015] init: hook live on rva 0x2820 (call site 0x26fe, slot 0xcc000)
+[09:19:29      0.015] prefetch: starting 1 worker(s)
+[09:19:29      0.015] sound_ogg_hook: initialisation complete (probe mode installs no hook)
+[09:19:29      0.015] prefetch: 68 root(s) to scan
+[09:19:29      0.015] prefetch: scanning D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\prefetch\integrated_dlc\test_dlc\sound
+[09:19:29      0.031] prefetch: scanning D:\SteamLibrary\steamapps\workshop\content\394360\2777392649\sound
+[09:19:29      0.031] prefetch: scanning D:\SteamLibrary\steamapps\workshop\content\394360\3093971363\sound
+[09:19:29      0.031] prefetch: scanning D:\SteamLibrary\steamapps\workshop\content\394360\3636701201\sound
+[09:19:29      0.031] prefetch: scanning D:\SteamLibrary\steamapps\workshop\content\394360\3757466864\sound
+[09:19:29      0.047] prefetch: scanning D:\SteamLibrary\steamapps\workshop\content\394360\3811112199\sound
+[09:19:29      0.047] prefetch: scan finished, 2 .ogg on disk, 1 referenced by sound assets, 1 queued
+[09:19:29      0.125] prefetch: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\prefetch\integrated_dlc\test_dlc\sound\sample.ogg -> 44100 Hz, 2 ch, 61.5 s, 95.2 ms decode, 10.35 MB decoded
+[09:19:29      0.125] prefetch: 1 decoded (10.3 MB, 95 ms total), 0 already cached, 0 skipped over budget, 0 over prefetch_max_file_mb, 0 failed; cache now 10.3/256.0 MB, 0 evictions
+[09:19:33      3.406] hook: SDL_RWops layout: size@0x0 seek@0x8 read@0x10 close@0x20 hidden@0x30
+[09:19:33      3.406] load: pass-through for a non-Ogg stream (first bytes 52 49 46 46), SDL handles it as before
+[09:19:33      3.406] load: pass-through for a non-Ogg stream (first bytes 52 49 46 46), SDL handles it as before
+[09:19:33      3.406] load: cache hit, 44100 Hz 2 ch 61.50 s (10594 kB PCM)
+[09:19:33      3.515] load: decoded on demand, 44100 Hz 2 ch 61.50 s in 95.0 ms (prefetcher missed)
+[09:19:33      3.515] load: ogg decode failed (stb_vorbis_open_memory failed (error 34)); letting SDL report the failure
+CASE scan
+ASLR preferred=0x140000000 actual=0x7ff606ac0000 relocated=1
+hooked=1 live-base-ok=1 WAV/Ogg/invalid/freesrc/PCM=OK
+[09:19:34      0.000] sound_ogg_hook: process start, module dir = D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\scan\injected_mods\sound_ogg_hook
+[09:19:34      0.000] log file: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\scan\injected_mods\sound_ogg_hook\sound_ogg_hook.log
+[09:19:34      0.000] config: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\scan\injected_mods\sound_ogg_hook\sound_ogg_hook.ini loaded (2 keys): cache 256 MB, threads 0, prefetch off, max file 24 MB, roots 1, verbose 1, force_scan 1
+[09:19:34      0.000] image: base 0x140000000, 18 sections, 3912 .pdata functions
+[09:19:34      0.000] init: force_scan is set, using the byte-pattern scan directly
+[09:19:34      0.000] scan: 1 candidate call(s) with a 5th stack argument to a dynapi trampoline
+[09:19:34      0.000] scan:   func 0x26f0..0x2816 call 0x26fe -> stub 0x2820 -> impl 0x1730 (RIFF/WAVE: match)
+[09:19:34      0.000] scan: unique match - sound loader 0x26f0..0x2816, call 0x26fe, stub 0x2820, slot 0xcc000
+[09:19:34      0.000] init: slot holds SDL's bootstrap trampoline 0x2830; the dynapi installer will write 0x1730 into it
+[09:19:34      0.000] init: implementation 0x1730 is SDL's WAV parser (RIFF/WAVE ids)
+[09:19:34      0.000] patch: hooked rva 0x2820 -> 00007FFA7E2520A0 (absolute jump, slot left alone)
+[09:19:34      0.000] init: hook live on rva 0x2820 (call site 0x26fe, slot 0xcc000)
+[09:19:34      0.000] prefetch: disabled by configuration
+[09:19:34      0.000] sound_ogg_hook: initialisation complete (probe mode installs no hook)
+[09:19:37      3.390] hook: SDL_RWops layout: size@0x0 seek@0x8 read@0x10 close@0x20 hidden@0x30
+[09:19:37      3.390] load: pass-through for a non-Ogg stream (first bytes 52 49 46 46), SDL handles it as before
+[09:19:37      3.406] load: pass-through for a non-Ogg stream (first bytes 52 49 46 46), SDL handles it as before
+[09:19:37      3.500] load: decoded on demand, 44100 Hz 2 ch 61.50 s in 98.6 ms (prefetcher missed)
+[09:19:37      3.609] load: decoded on demand, 44100 Hz 2 ch 61.50 s in 95.1 ms (prefetcher missed)
+[09:19:37      3.609] load: ogg decode failed (stb_vorbis_open_memory failed (error 34)); letting SDL report the failure
+CASE override
+ASLR preferred=0x140000000 actual=0x7ff6b2420000 relocated=1
+hooked=1 live-base-ok=1 WAV/Ogg/invalid/freesrc/PCM=OK
+[09:19:38      0.000] sound_ogg_hook: process start, module dir = D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\override\injected_mods\sound_ogg_hook
+[09:19:38      0.000] log file: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\override\injected_mods\sound_ogg_hook\sound_ogg_hook.log
+[09:19:38      0.000] config: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\override\injected_mods\sound_ogg_hook\sound_ogg_hook.ini loaded (2 keys): cache 256 MB, threads 0, prefetch off, max file 24 MB, roots 1, verbose 1, force_scan 0
+[09:19:38      0.000] image: base 0x140000000, 18 sections, 3912 .pdata functions
+[09:19:38      0.000] init: using the configured override stub rva 0x2820
+[09:19:38      0.000] init: slot holds SDL's bootstrap trampoline 0x2830; the dynapi installer will write 0x1730 into it
+[09:19:38      0.000] init: implementation 0x1730 is SDL's WAV parser (RIFF/WAVE ids)
+[09:19:38      0.000] patch: hooked rva 0x2820 -> 00007FFA7E2520A0 (absolute jump, slot left alone)
+[09:19:38      0.000] init: hook live on rva 0x2820 (call site 0x0, slot 0xcc000)
+[09:19:38      0.000] prefetch: disabled by configuration
+[09:19:38      0.000] sound_ogg_hook: initialisation complete (probe mode installs no hook)
+[09:19:42      3.391] hook: SDL_RWops layout: size@0x0 seek@0x8 read@0x10 close@0x20 hidden@0x30
+[09:19:42      3.391] load: pass-through for a non-Ogg stream (first bytes 52 49 46 46), SDL handles it as before
+[09:19:42      3.391] load: pass-through for a non-Ogg stream (first bytes 52 49 46 46), SDL handles it as before
+[09:19:42      3.500] load: decoded on demand, 44100 Hz 2 ch 61.50 s in 97.8 ms (prefetcher missed)
+[09:19:42      3.610] load: decoded on demand, 44100 Hz 2 ch 61.50 s in 97.5 ms (prefetcher missed)
+[09:19:42      3.610] load: ogg decode failed (stb_vorbis_open_memory failed (error 34)); letting SDL report the failure
+CASE injector_probe
+ASLR preferred=0x140000000 actual=0x7ff6f72f0000 relocated=1
+unpatched=1 live-base-ok=1
+[09:19:43      0.000] sound_ogg_hook: process start, module dir = D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\injector_probe\injected_mods\sound_ogg_hook
+[09:19:43      0.000] log file: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\injector_probe\injected_mods\sound_ogg_hook\sound_ogg_hook.log
+[09:19:43      0.000] config: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\injector_probe\injected_mods\sound_ogg_hook\sound_ogg_hook.ini loaded (0 keys): cache 256 MB, threads 0, prefetch on, max file 24 MB, roots 1, verbose 1, force_scan 0
+[09:19:43      0.000] image: base 0x140000000, 18 sections, 3912 .pdata functions
+[09:19:43      0.000] resolve: anchor "Failed to load audio "%s". SDL Error: "%s"
+"
+[09:19:43      0.000] resolve:   string rva 0xcf120, referenced from rva 0x2706
+[09:19:43      0.000] resolve:   sound loader 0x26f0..0x2816 (size 294)
+[09:19:43      0.000] resolve:   SDL_LoadWAV_RW call at 0x26fe -> stub 0x2820 -> slot 0xcc000
+[09:19:43      0.000] resolve:   slot holds 0x7ff6f72f2830 (rva 0x2830) (image code: SDL is initialised)
+[09:19:43      0.000] init: slot holds SDL's bootstrap trampoline 0x2830; the dynapi installer will write 0x1730 into it
+[09:19:43      0.000] init: implementation 0x1730 is SDL's WAV parser (RIFF/WAVE ids)
+[09:19:43      0.000] probe-only flag present: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\injector_probe\injected_mods\sound_ogg_hook\diplo_action_hook_probe_only.txt
+[09:19:43      0.000] probe-only: resolution finished, nothing is hooked, prefetch not started
+[09:19:43      0.000] probe-only: delete the flag file to enable the hook
+[09:19:43      0.000] sound_ogg_hook: initialisation complete (probe mode installs no hook)
+CASE own_probe
+ASLR preferred=0x140000000 actual=0x7ff684a40000 relocated=1
+unpatched=1 live-base-ok=1
+[09:19:47      0.000] sound_ogg_hook: process start, module dir = D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\own_probe\injected_mods\sound_ogg_hook
+[09:19:47      0.000] log file: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\own_probe\injected_mods\sound_ogg_hook\sound_ogg_hook.log
+[09:19:47      0.000] config: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\own_probe\injected_mods\sound_ogg_hook\sound_ogg_hook.ini loaded (0 keys): cache 256 MB, threads 0, prefetch on, max file 24 MB, roots 1, verbose 1, force_scan 0
+[09:19:47      0.000] image: base 0x140000000, 18 sections, 3912 .pdata functions
+[09:19:47      0.000] resolve: anchor "Failed to load audio "%s". SDL Error: "%s"
+"
+[09:19:47      0.000] resolve:   string rva 0xcf120, referenced from rva 0x2706
+[09:19:47      0.000] resolve:   sound loader 0x26f0..0x2816 (size 294)
+[09:19:47      0.000] resolve:   SDL_LoadWAV_RW call at 0x26fe -> stub 0x2820 -> slot 0xcc000
+[09:19:47      0.000] resolve:   slot holds 0x7ff684a42830 (rva 0x2830) (image code: SDL is initialised)
+[09:19:47      0.000] init: slot holds SDL's bootstrap trampoline 0x2830; the dynapi installer will write 0x1730 into it
+[09:19:47      0.000] init: implementation 0x1730 is SDL's WAV parser (RIFF/WAVE ids)
+[09:19:47      0.000] probe-only flag present: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\own_probe\injected_mods\sound_ogg_hook\sound_ogg_hook_probe_only.txt
+[09:19:47      0.000] probe-only: resolution finished, nothing is hooked, prefetch not started
+[09:19:47      0.000] probe-only: delete the flag file to enable the hook
+[09:19:47      0.000] sound_ogg_hook: initialisation complete (probe mode installs no hook)
+CASE foreign
+ASLR preferred=0x140000000 actual=0x7ff6fd100000 relocated=1
+unpatched=1 live-base-ok=1
+CASE reject
+ASLR preferred=0x140000000 actual=0x7ff63b9c0000 relocated=1
+unpatched=1 live-base-ok=1
+[09:19:55      0.000] sound_ogg_hook: process start, module dir = D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\reject\injected_mods\sound_ogg_hook
+[09:19:55      0.000] log file: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\reject\injected_mods\sound_ogg_hook\sound_ogg_hook.log
+[09:19:55      0.000] config: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\reject\injected_mods\sound_ogg_hook\sound_ogg_hook.ini loaded (1 keys): cache 256 MB, threads 0, prefetch on, max file 24 MB, roots 1, verbose 1, force_scan 0
+[09:19:55      0.000] image: base 0x140000000, 18 sections, 3912 .pdata functions
+[09:19:55      0.000] init: using the configured override stub rva 0x2820
+[09:19:55      0.000] init: implementation 0x1450 does not look like SDL's WAV parser (RIFF/WAVE ids)
+[09:19:55      0.000] init: refusing to hook a target that is not a verified WAV parser
+[09:19:55      0.000] sound_ogg_hook: not installed; see the messages above
+CASE outside
+ASLR preferred=0x140000000 actual=0x7ff624b00000 relocated=1
+unpatched=1 live-base-ok=1
+[09:19:59      0.000] sound_ogg_hook: process start, module dir = D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\outside\injected_mods\sound_ogg_hook
+[09:19:59      0.000] log file: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\outside\injected_mods\sound_ogg_hook\sound_ogg_hook.log
+[09:19:59      0.016] config: D:\zStudy\hoi4\source_code\sound_ogg_hook_src\test_out\outside\injected_mods\sound_ogg_hook\sound_ogg_hook.ini loaded (1 keys): cache 256 MB, threads 0, prefetch on, max file 24 MB, roots 1, verbose 1, force_scan 0
+[09:19:59      0.016] image: base 0x140000000, 18 sections, 3912 .pdata functions
+[09:19:59      0.016] init: using the configured override stub rva 0x2820
+[09:19:59      0.016] init: slot holds a pointer outside the image; refusing an unverified target
+[09:19:59      0.016] sound_ogg_hook: not installed; see the messages above
+ALL PASSED: real game resolver, selftest, fixture resolver and 9 injector cases
+DLL SHA256 a6d8e5dc311c0c0c507aeb6814874f98c44974ee213d645157fdb3e1b36f3f98

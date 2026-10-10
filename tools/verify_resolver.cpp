@@ -1,7 +1,7 @@
-// Host-side check of the anchor resolver: run it against a stellaris.exe on
+// Host-side check of the anchor resolver: run it against a hoi4.exe on
 // disk and compare what it finds with known values.
 //
-//   verify_resolver.exe <stellaris.exe> [expected_stub_rva] [expected_call_rva] [expected_slot_rva]
+//   verify_resolver.exe <hoi4.exe> [expected_stub_rva] [expected_call_rva] [expected_slot_rva]
 //
 // Exit code 0 when everything (including the given expectations) matched.
 #include <windows.h>
@@ -39,7 +39,7 @@ int wmain(int argc, wchar_t** argv) {
     }
   }
   if (args.empty()) {
-    wprintf(L"usage: verify_resolver.exe <stellaris.exe> [stub_rva] [call_rva] [slot_rva] [--scan]\n"
+    wprintf(L"usage: verify_resolver.exe <hoi4.exe> [stub_rva] [call_rva] [slot_rva] [--scan]\n"
             L"  --scan  skip the log-string anchors and use the byte-pattern scan only\n");
     return 2;
   }

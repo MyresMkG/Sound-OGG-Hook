@@ -22,7 +22,7 @@
 namespace oggsound {
 namespace {
 
-const wchar_t kWorkshopAppId[] = L"281990";
+const wchar_t kWorkshopAppId[] = L"394360";
 
 struct Context {
   const Config* config = nullptr;
@@ -98,7 +98,7 @@ std::wstring UserDataDir() {
   if (FAILED(::SHGetFolderPathW(nullptr, CSIDL_PERSONAL, nullptr, SHGFP_TYPE_CURRENT, buffer))) {
     return std::wstring();
   }
-  return std::wstring(buffer) + L"\\Paradox Interactive\\Stellaris";
+  return std::wstring(buffer) + L"\\Paradox Interactive\\Hearts of Iron IV";
 }
 
 std::vector<std::wstring> ListSubdirs(const std::wstring& dir) {
@@ -146,15 +146,40 @@ std::wstring SteamWorkshopDir() {
   return std::wstring();
 }
 
+bool ReadWholeFile(const std::wstring& path, size_t max_bytes, std::vector<uint8_t>* out);
+
+void AddDescriptorRoots(std::vector<std::wstring>* roots, const std::wstring& user_dir) {
+  const std::wstring mod_dir = JoinPath(user_dir, L"mod");
+  WIN32_FIND_DATAW data{};
+  HANDLE find = ::FindFirstFileW(JoinPath(mod_dir, L"*.mod").c_str(), &data);
+  if (find == INVALID_HANDLE_VALUE) return;
+  do {
+    if ((data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0) continue;
+    std::vector<uint8_t> raw;
+    if (!ReadWholeFile(JoinPath(mod_dir, data.cFileName), 1u << 20, &raw)) continue;
+    for (const std::string& entry : ModDescriptorPaths(std::string(raw.begin(), raw.end()))) {
+      std::wstring path = WidenPath(entry);
+      std::replace(path.begin(), path.end(), L'/', L'\\');
+      if (path.empty()) continue;
+      const bool absolute = (path.size() > 2 && path[1] == L':') || path[0] == L'\\';
+      if (!absolute) path = JoinPath(user_dir, path.c_str());
+      AddRoot(roots, path);
+    }
+  } while (::FindNextFileW(find, &data));
+  ::FindClose(find);
+}
+
 std::vector<std::wstring> CollectRoots(const Config& config) {
   std::vector<std::wstring> roots;
   const std::wstring exe_dir = ExeDir();
   AddRoot(&roots, exe_dir);
   AddSubdirs(&roots, JoinPath(exe_dir, L"dlc"));
+  AddSubdirs(&roots, JoinPath(exe_dir, L"integrated_dlc"));
 
   const std::wstring user_dir = UserDataDir();
   AddRoot(&roots, user_dir);
   AddSubdirs(&roots, JoinPath(user_dir, L"mod"));
+  AddDescriptorRoots(&roots, user_dir);
 
   if (config.scan_roots != 0) {
     const std::wstring workshop = SteamWorkshopDir();
@@ -395,6 +420,7 @@ void ScannerMain(Config config, Cache* cache, Context* ctx) {
       (unsigned long long)ctx->failed.load(),
       (double)cache->bytes() / 1048576.0, (double)cache->budget() / 1048576.0,
       (unsigned long long)stats.evicted);
+  delete ctx;
 }
 
 }  // namespace
@@ -414,12 +440,27 @@ void StartPrefetch(const Config& config, Cache* cache) {
   auto* ctx = new Context();
   ctx->config = &config;
   ctx->cache = cache;
-  ctx->workers_left.store(workers, std::memory_order_relaxed);
-
-  for (int i = 0; i < workers; ++i) {
-    std::thread(WorkerMain, ctx).detach();
+  try {
+    for (int i = 0; i < workers; ++i) {
+      ctx->workers_left.fetch_add(1, std::memory_order_relaxed);
+      try {
+        std::thread(WorkerMain, ctx).detach();
+      } catch (...) {
+        ctx->workers_left.fetch_sub(1, std::memory_order_relaxed);
+        throw;
+      }
+    }
+    std::thread(ScannerMain, config, cache, ctx).detach();
+  } catch (...) {
+    {
+      std::lock_guard<std::mutex> lock(ctx->mu);
+      ctx->scan_done = true;
+    }
+    ctx->cv.notify_all();
+    while (ctx->workers_left.load(std::memory_order_relaxed) != 0) ::Sleep(1);
+    delete ctx;
+    throw;
   }
-  std::thread(ScannerMain, config, cache, ctx).detach();
 }
 
 }  // namespace oggsound

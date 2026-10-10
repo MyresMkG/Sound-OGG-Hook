@@ -2,7 +2,7 @@
 //
 // The same class serves two callers:
 //   * the DLL, looking at the live game module (addresses are the real ones), and
-//   * the host-side verifier, looking at a stellaris.exe on disk (the file is
+//   * the host-side verifier, looking at a hoi4.exe on disk (the file is
 //     laid out by RVA into a scratch buffer, so every lookup below works the
 //     same way; image_base is still the one from the optional header).
 #pragma once

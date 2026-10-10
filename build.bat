@@ -1,5 +1,5 @@
 @echo off
-rem Build sound_ogg_hook.dll with MinGW-w64 and place it into ..\sound_ogg_hook_dll\.
+rem Build the HOI4 x64 hook into ..\..\full_releases\sound_ogg_hook\.
 rem The host-side check tools (verify_resolver.exe, selftest.exe) land in build\.
 rem
 rem Set MINGW_BIN if g++ is not on PATH, e.g.
@@ -19,13 +19,16 @@ set ROOT=%~dp0
 set SRC=%ROOT%src
 set TOOLS=%ROOT%tools
 set BUILD=%ROOT%build
-set OUT=%ROOT%..\sound_ogg_hook_dll
+set OUT=%ROOT%..\..\full_releases\sound_ogg_hook
+if not "%OUTDIR%"=="" set "OUT=%OUTDIR%"
 
 if not exist "%BUILD%" mkdir "%BUILD%"
 if not exist "%OUT%" mkdir "%OUT%"
+if not exist "%OUT%\sound_ogg_hook.ini" copy /y "%ROOT%release\sound_ogg_hook.ini" "%OUT%\sound_ogg_hook.ini" >nul
+if errorlevel 1 exit /b 1
 
 set CFLAGS=-O2 -DNDEBUG -fno-strict-aliasing
-set COMMON=-std=c++17 -O2 -DNDEBUG -Wall -Wextra -static -static-libgcc -static-libstdc++
+set COMMON=-std=c++17 -O2 -DNDEBUG -Wall -Wextra -Werror -static -static-libgcc -static-libstdc++
 
 echo [1/5] stb_vorbis.c
 gcc %CFLAGS% -c "%SRC%\stb_vorbis.c" -o "%BUILD%\stb_vorbis.o"
@@ -54,7 +57,9 @@ if errorlevel 1 exit /b 1
 rem Runs the checks and also parses the sound_ogg_hook.ini we ship, so a typo in
 rem a key name there fails the build instead of the game.
 echo [5/5] selftest run
-"%BUILD%\selftest.exe" "" "%OUT%"
+"%BUILD%\selftest.exe" "%OGG_FILE%" "%ROOT%release"
+if errorlevel 1 exit /b 1
+copy /y "%ROOT%release\README.md" "%OUT%\README.md" >nul
 if errorlevel 1 exit /b 1
 
 echo.

@@ -67,9 +67,9 @@ std::wstring FindGameOgg() {
   DWORD size = sizeof(steam_path);
   if (::RegGetValueW(HKEY_CURRENT_USER, L"Software\\Valve\\Steam", L"SteamPath", RRF_RT_REG_SZ,
                      nullptr, steam_path, &size) == ERROR_SUCCESS) {
-    music_dirs.push_back(std::wstring(steam_path) + L"\\steamapps\\common\\Stellaris\\music");
+    music_dirs.push_back(std::wstring(steam_path) + L"\\steamapps\\common\\Hearts of Iron IV\\music");
   }
-  music_dirs.push_back(L"D:\\SteamLibrary\\steamapps\\common\\Stellaris\\music");
+  music_dirs.push_back(L"D:\\SteamLibrary\\steamapps\\common\\Hearts of Iron IV\\music");
 
   for (const std::wstring& dir : music_dirs) {
     const std::wstring pattern = dir + L"\\*.ogg";
@@ -351,6 +351,8 @@ int wmain(int argc, wchar_t** argv) {
   TestMemoryRwops();
   TestCache();
   TestAssetParsing();
+  const auto paths = ModDescriptorPaths("name=\"path = fake\" # path=\"bad\"\npath=\"D:/mods/local\"\narchive=\"x.zip\"");
+  CHECK(paths.size() == 1 && paths[0] == "D:/mods/local", L"local mod descriptor path");
   if (argc > 2 && argv[2][0] != 0) {
     TestConfig(argv[2]);
   }

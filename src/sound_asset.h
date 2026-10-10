@@ -1,4 +1,4 @@
-// Reading Stellaris sound assets: which files they name, and where those files
+// Reading HOI4 sound assets: which files they name, and where those files
 // live on disk.
 //
 // The prefetcher uses this to decide what to decode ahead of time. Assets that
@@ -21,6 +21,9 @@ std::wstring JoinPath(const std::wstring& dir, const wchar_t* leaf);
 // honoured, and block nesting is followed, so entries written under
 // `category = { soundeffects = { sound = { ... } } }` are found too.
 std::vector<std::string> AssetFileEntries(const std::string& text);
+
+// Folder paths from a launcher .mod descriptor, including external local mods.
+std::vector<std::string> ModDescriptorPaths(const std::string& text);
 
 // The paths one entry may denote, in the order the engine would try them:
 //   1. <root>/<entry>          - entries written as "sound/xxx.ogg"

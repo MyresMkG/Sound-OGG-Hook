@@ -222,6 +222,8 @@ extern "C" SDL_AudioSpecStub* DetourLoadWav(void* src, int freesrc, SDL_AudioSpe
   }
 
   g_failures.fetch_add(1, std::memory_order_relaxed);
+  // Once freesrc consumed the source, it must never be handed to SDL again.
+  if (stream_closed) return nullptr;
   if (!stream_closed) RwSeek(g_layout, src, 0, 0);
   return CallOriginal(src, freesrc, spec, audio_buf, audio_len);
 }
@@ -242,6 +244,10 @@ bool InitSoundHook(HMODULE self) {
     resolution.stub_rva = g_config.override_stub_rva;
     if (StubSlot(g_image, resolution.stub_rva, &resolution.slot_rva, &resolution.slot_value)) {
       Log("init: using the configured override stub rva 0x%x", resolution.stub_rva);
+      if (resolution.slot_value >= g_image.image_base() &&
+          resolution.slot_value < g_image.image_base() + g_image.image_size()) {
+        resolution.slot_target_rva = resolution.slot_value - g_image.image_base();
+      }
       resolved = true;
     } else {
       Log("init: override stub rva 0x%x is not a dynapi trampoline", resolution.stub_rva);
@@ -277,16 +283,22 @@ bool InitSoundHook(HMODULE self) {
       implementation = target;
     }
   } else {
-    Log("init: slot holds a pointer outside the image (overridden SDL?); hooking anyway");
+    Log("init: slot holds a pointer outside the image; refusing an unverified target");
+    return false;
   }
   if (implementation != 0) {
     const bool wave_like = LooksLikeWaveLoader(g_image, implementation, 2);
     Log("init: implementation 0x%x %s SDL's WAV parser (RIFF/WAVE ids)", implementation,
         wave_like ? "is" : "does not look like");
     if (!wave_like) {
-      Log("init: continuing anyway - the argument pattern and call shape are what identified the "
-          "stub, and the hook is harmless if it is wrong (non-Ogg streams pass through)");
+      Log("init: refusing to hook a target that is not a verified WAV parser");
+      return false;
     }
+  }
+
+  if (implementation == 0) {
+    Log("init: could not confirm the real WAV implementation; nothing is hooked");
+    return false;
   }
 
   if (ProbeOnlyRequested(ModuleDir())) {
@@ -297,6 +309,12 @@ bool InitSoundHook(HMODULE self) {
 
   // The slot is published first: the moment the jump below is in place another
   // thread can be inside DetourLoadWav and call through it.
+  HMODULE pinned = nullptr;
+  if (!::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_PIN,
+                           reinterpret_cast<LPCWSTR>(&DetourLoadWav), &pinned)) {
+    Log("init: could not pin the hook DLL (error %lu)", ::GetLastError());
+    return false;
+  }
   g_slot_rva.store(resolution.slot_rva, std::memory_order_release);
   if (!InstallAbsoluteJump(g_image, resolution.stub_rva, (const void*)&DetourLoadWav, &g_patch)) {
     Log("init: hook installation failed; the game stays unmodified");
@@ -307,7 +325,13 @@ bool InitSoundHook(HMODULE self) {
   Log("init: hook live on rva 0x%x (call site 0x%x, slot 0x%x)", resolution.stub_rva,
       resolution.call_rva, resolution.slot_rva);
 
-  StartPrefetch(g_config, &g_cache);
+  try {
+    StartPrefetch(g_config, &g_cache);
+  } catch (const std::exception& error) {
+    Log("prefetch: could not start (%s); hook remains live for on-demand decoding", error.what());
+  } catch (...) {
+    Log("prefetch: could not start; hook remains live for on-demand decoding");
+  }
   return true;
 }
 

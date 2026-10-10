@@ -4,8 +4,8 @@
 // Files are located on disk rather than through the engine, because the engine
 // gives us no cheap way to read a file by name, and because the sources are
 // known: the game's own folder (plus its dlc subfolders), the user's
-// `Documents\Paradox Interactive\Stellaris\mod` folder, and the Steam Workshop
-// folder for appid 281990. Mods are loose folders in all three cases; a mod
+// `Documents\Paradox Interactive\Hearts of Iron IV\mod` folder, and the Steam Workshop
+// folder for appid 394360. Mods are loose folders in all three cases; a mod
 // packed as a .zip is simply not prefetched and falls back to decoding on
 // demand.
 //

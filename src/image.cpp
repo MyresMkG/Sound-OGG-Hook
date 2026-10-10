@@ -21,7 +21,10 @@ bool Image::InitFromModule(HMODULE module) {
   if (base_ == nullptr) return false;
   const auto* dos = reinterpret_cast<const IMAGE_DOS_HEADER*>(base_);
   if (dos->e_magic != IMAGE_DOS_SIGNATURE) return false;
-  return InitFromHeader(base_, SIZE_MAX);
+  if (!InitFromHeader(base_, SIZE_MAX)) return false;
+  // The optional header contains the preferred address, not the ASLR address.
+  image_base_ = reinterpret_cast<uintptr_t>(module);
+  return true;
 }
 
 bool Image::InitFromFile(const std::wstring& path) {

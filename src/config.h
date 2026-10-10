@@ -1,5 +1,5 @@
 // Optional INI next to the DLL, plus the probe flag convention shared with
-// stellaris_mod_injector (`--probe` drops a file next to each DLL).
+// hoi4_mod_injector (INI probe=1 drops a file next to each DLL).
 #pragma once
 
 #include <cstdint>
@@ -15,7 +15,7 @@ struct Config {
   int scan_roots = 1;            // 0 = only game dir + user mod dirs, no workshop
   bool verbose = true;           // per-file logging
   bool force_scan = false;       // skip the anchor path entirely (debug/emergency)
-  uint32_t override_stub_rva = 0;  // emergency override, e.g. 0x1d99dd0
+  uint32_t override_stub_rva = 0;  // emergency override; 0 = automatic resolution
 
   std::string summary() const;
 };

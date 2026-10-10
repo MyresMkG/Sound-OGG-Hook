@@ -50,7 +50,7 @@ bool LooksLikeLayout(const Image& img, void* ops, const RwopsLayout& layout) {
 bool DetectLayout(const Image& img, void* ops, RwopsLayout* out) {
   if (ops == nullptr) return false;
 
-  // SDL >= 2.0.20: size, seek, read, write, close, type, hidden.
+  // HOI4 1.19.3: size, seek, read, write, close, type, hidden.
   RwopsLayout modern{};
   modern.size_off = 0x00;
   modern.seek_off = 0x08;
@@ -61,7 +61,7 @@ bool DetectLayout(const Image& img, void* ops, RwopsLayout* out) {
   modern.hidden_off = 0x30;
   modern.legacy_seek = false;
 
-  // SDL < 2.0.20: seek, read, write, close, type, hidden.
+  // Legacy layout: seek, read, write, close, type, hidden.
   RwopsLayout legacy = modern;
   legacy.size_off = 0xFFFFFFFFu;
   legacy.seek_off = 0x00;
@@ -79,7 +79,7 @@ bool DetectLayout(const Image& img, void* ops, RwopsLayout* out) {
     return true;
   }
   if (LooksLikeLayout(img, ops, legacy)) {
-    Log("rwops: legacy SDL_RWops layout detected (pre-2.0.20)");
+    Log("rwops: legacy SDL_RWops layout detected (without size callback)");
     *out = legacy;
     return true;
   }

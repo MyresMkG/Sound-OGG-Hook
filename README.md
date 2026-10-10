@@ -2,6 +2,8 @@
 
 Windows x64 DLL，通过 `hoi4_mod_injector` 加载，让 HOI4 的音效 `.asset` 可以引用 Ogg Vorbis。原版 WAV 继续由游戏的 SDL 加载，Ogg 在内存中解码并合成 WAV，输出缓冲仍由 SDL 分配、由游戏照常释放。音乐播放器原本支持 Ogg，此插件主要用于音效。
 
+（使用gpt-6.1-sol编写，harness为codex）
+
 ## 安装
 
 先按 `hoi4_mod_injector` 的说明安装代理 DLL。把本目录的 `sound_ogg_hook.dll` 和 `sound_ogg_hook.ini` 放到：
